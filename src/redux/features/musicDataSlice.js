@@ -1,9 +1,8 @@
-// src/features/musicSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   data: [],
-  loading: false,
+  isLoading: false,
   error: null,
 };
 
@@ -12,15 +11,15 @@ const musicSlice = createSlice({
   initialState,
   reducers: {
     fetchDataStart(state) {
-      state.loading = true;
+      state.isLoading = true;
       state.error = null;
     },
     fetchDataSuccess(state, action) {
-      state.loading = false;
+      state.isLoading = false;
       state.data = action.payload;
     },
     fetchDataFailure(state, action) {
-      state.loading = false;
+      state.isLoading = false;
       state.error = action.payload;
     },
   },

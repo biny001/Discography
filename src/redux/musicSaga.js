@@ -20,7 +20,7 @@ function* fetchData() {
   try {
     const response = yield call(fetch, url, options);
     const data = yield response.json();
-    yield put(fetchDataSuccess(data));
+    yield put(fetchDataSuccess(data?.tracks));
   } catch (error) {
     yield put(fetchDataFailure(error.message));
   }
