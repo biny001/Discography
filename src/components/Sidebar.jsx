@@ -99,7 +99,7 @@ function Sidebar() {
     <Container>
       <NavLink to="/">
         <LogoContainer>
-          <Logo src="src\assets\Logo.png" />
+          <Logo src="/src/assets/Logo.png" />
           <h1>Discography</h1>
         </LogoContainer>
       </NavLink>
