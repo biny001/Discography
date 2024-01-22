@@ -1,65 +1,70 @@
 import styled from "@emotion/styled";
+import SongCard from "./SongCard";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchDataStart } from "../redux/features/musicDataSlice";
+import Loader from "./Loader";
 
 const DiscoverContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+
+  grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
   gap: 24px;
+  padding: 16px;
 
   justify-content: center;
-`;
 
-const SongCard = styled.div`
-  width: 200px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.3s ease-in-out;
-  cursor: pointer;
+  @media (min-width: 600px) {
+    grid-template-columns: repeat(
+      2,
+      minmax(200px, 1fr)
+    ); /* Two columns for screens wider than 600px */
+  }
 
-  &:hover {
-    transform: translateY(-4px);
+  @media (min-width: 900px) {
+    grid-template-columns: repeat(
+      3,
+      minmax(200px, 1fr)
+    ); /* Three columns for screens wider than 900px */
+  }
+
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(
+      4,
+      minmax(200px, 1fr)
+    ); /* Four columns for screens wider than 1200px */
   }
 `;
 
-const SongImage = styled.img`
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-`;
-
-const SongInfo = styled.div`
-  padding: 12px;
-`;
-
-const SongTitle = styled.h3`
-  font-size: 16px;
-  margin-bottom: 8px;
-`;
-
-const SongArtist = styled.p`
-  font-size: 14px;
-  color: #888;
-`;
-
 function Discover() {
+  const dispatch = useDispatch();
+  const { data, isLoading } = useSelector((store) => store.music);
+
+  useEffect(() => {
+    // console.log("Component mounted, dispatching action");
+    dispatch(fetchDataStart());
+  }, [dispatch]);
   return (
-    <DiscoverContainer>
-      {[...Array(6)].map((_, index) => (
-        <SongCard key={index}>
-          <SongImage
-            src={`https://via.placeholder.com/200x120?text=Song+${index + 1}`}
-            alt={`Song ${index + 1}`}
-          />
-          <SongInfo>
-            <SongTitle>Song Title {index + 1}</SongTitle>
-            <SongArtist>Artist Name</SongArtist>
-          </SongInfo>
-        </SongCard>
-      ))}
-    </DiscoverContainer>
+    <>
+      <h1 style={{ textAlign: "left", width: "100%", fontSize: "24px" }}>
+        From all around the world
+      </h1>
+      <DiscoverContainer>
+        {isLoading ? (
+          // Render a loading state while data is being fetched
+          <Loader />
+        ) : (
+          // Map through the data and render SongCard components
+          data.map((song) => (
+            <SongCard
+              key={song.key}
+              song={song}
+              isLoading={false}
+            />
+          ))
+        )}
+      </DiscoverContainer>
+    </>
   );
 }
 

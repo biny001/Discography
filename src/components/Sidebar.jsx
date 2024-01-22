@@ -10,7 +10,7 @@ import { GoSearch } from "react-icons/go";
 import { NavLink } from "react-router-dom";
 
 const Container = styled.div`
-  height: 100vh;
+  height: 110vh;
   background-color: #205295;
   display: flex;
   flex-direction: column;
@@ -99,7 +99,7 @@ function Sidebar() {
     <Container>
       <NavLink to="/">
         <LogoContainer>
-          <Logo src="/src/assets/Logo.png" />
+          <Logo src="/Logo.png" />
           <h1>Discography</h1>
         </LogoContainer>
       </NavLink>

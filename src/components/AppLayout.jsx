@@ -9,10 +9,12 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 0.5fr 3fr;
   overflow-x: hidden;
+  overflow-y: hidden;
 `;
 
 const Main = styled.div`
   display: grid;
+
   grid-template-columns: ${({ showInfo }) =>
     showInfo ? "3fr 1fr" : "3.5fr 0fr"};
   transition: all 0.5s ease-in-out;
@@ -22,7 +24,9 @@ const OutletContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  overflow-y: auto;
+  max-height: 100vh;
+  position: relative;
 `;
 
 function AppLayout() {
