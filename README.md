@@ -1,5 +1,5 @@
 # Discography
-![Discography Logo](src/assets/Logo.png)
+<img src="src/assets/Logo.png" alt="Discography Logo" width="300" height="200">
 Discography is a web app that allows users to explore and find information about their favorite music artists. Whether you're looking for discographies, top tracks, or related artists, Discography has you covered.
 
 ## Features
