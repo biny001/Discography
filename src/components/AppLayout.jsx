@@ -13,7 +13,8 @@ const Container = styled.div`
 
 const Main = styled.div`
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: ${({ showInfo }) =>
+    showInfo ? "3fr 1fr" : "3.5fr 0fr"};
   transition: all 0.5s ease-in-out;
 `;
 
@@ -23,15 +24,19 @@ const OutletContainer = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
 function AppLayout() {
   const [showInfo, setShowInfo] = useState(true);
 
   // Toggle the state based on some condition
+  const handleToggleInfo = () => {
+    setShowInfo(!showInfo);
+  };
 
   return (
     <Container>
       <SideBar />
-      <Main>
+      <Main showInfo={showInfo}>
         <OutletContainer>
           <Outlet />
         </OutletContainer>

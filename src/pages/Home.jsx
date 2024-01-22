@@ -1,6 +1,18 @@
 import { useEffect } from "react";
+import styled from "@emotion/styled";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDataStart } from "../redux/features/musicDataSlice";
+import Discover from "../components/Discover";
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem;
+
+  width: 100%;
+  height: 100%;
+`;
 
 function Home() {
   const dispatch = useDispatch();
@@ -12,7 +24,11 @@ function Home() {
   }, [dispatch]);
 
   console.log(data, isLoading);
-  return <div>Home</div>;
+  return (
+    <Container>
+      <Discover data={data} />
+    </Container>
+  );
 }
 
 export default Home;
