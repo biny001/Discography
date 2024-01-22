@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { useState } from "react";
-import SideBar from "./SideBar";
+import SideBar from "./Sidebar";
 import styled from "@emotion/styled";
 import Info from "./Info";
 
@@ -26,12 +26,12 @@ const OutletContainer = styled.div`
 `;
 
 function AppLayout() {
-  const [showInfo, setShowInfo] = useState(true);
+  const [showInfo, setShowInfo] = useState(false);
 
   // Toggle the state based on some condition
-  const handleToggleInfo = () => {
-    setShowInfo(!showInfo);
-  };
+  // const handleToggleInfo = () => {
+  //   setShowInfo(!showInfo);
+  // };
 
   return (
     <Container>
