@@ -38,7 +38,7 @@ const DiscoverContainer = styled.div`
 
 function Discover() {
   const dispatch = useDispatch();
-  const { data, isLoading } = useSelector((store) => store.music);
+  const { data } = useSelector((store) => store.music);
   const [dataFetched, setDataFetched] = useState(false);
 
   useEffect(() => {
@@ -46,14 +46,14 @@ function Discover() {
       dispatch(fetchDataStart());
       setDataFetched(true);
     }
-  }, [dispatch, dataFetched]);
+  }, [dispatch, setDataFetched, dataFetched]);
   return (
     <>
       <h1 style={{ textAlign: "left", width: "100%", fontSize: "24px" }}>
         From all around the world
       </h1>
       <DiscoverContainer>
-        {isLoading ? (
+        {!dataFetched ? (
           // Render a loading state while data is being fetched
           <Loader />
         ) : (
