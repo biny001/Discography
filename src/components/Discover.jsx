@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import SongCard from "./SongCard";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDataStart } from "../redux/features/musicDataSlice";
 import Loader from "./Loader";
@@ -39,11 +39,14 @@ const DiscoverContainer = styled.div`
 function Discover() {
   const dispatch = useDispatch();
   const { data, isLoading } = useSelector((store) => store.music);
+  const [dataFetched, setDataFetched] = useState(false);
 
   useEffect(() => {
-    // console.log("Component mounted, dispatching action");
-    dispatch(fetchDataStart());
-  }, [dispatch]);
+    if (!dataFetched) {
+      dispatch(fetchDataStart());
+      setDataFetched(true);
+    }
+  }, [dispatch, dataFetched]);
   return (
     <>
       <h1 style={{ textAlign: "left", width: "100%", fontSize: "24px" }}>
