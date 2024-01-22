@@ -21,7 +21,7 @@ Discography is a web app that allows users to explore and find information about
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/discography.git
+   git clone https://github.com/biny001/discography.git
 2.install dependecy:
    cd discography
    npm install
