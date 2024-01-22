@@ -1,8 +1,24 @@
-# React + Vite
+# Discography
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Discography is a web app that allows users to explore and find information about their favorite music artists. Whether you're looking for discographies, top tracks, or related artists, Discography has you covered.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Artist Search**: Search for your favorite artists and get detailed information about their discography.
+- **Top Tracks**: Explore the top tracks of an artist to discover their most popular songs.
+- **Related Artists**: Find similar artists based on your music preferences.
+- **User-Friendly Interface**: A clean and intuitive user interface for an enjoyable user experience.
+
+## Technologies Used
+
+- React.js
+- Redux Toolkit for state management
+- Redux Saga for handling asynchronous actions
+- [Any other libraries or frameworks you're using]
+
+## Getting Started
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/your-username/discography.git
