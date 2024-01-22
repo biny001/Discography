@@ -1,33 +1,25 @@
-// src/sagas/musicSaga.js
-import { call, put, takeLatest } from "redux-saga/effects";
-import {
-  fetchDataStart,
-  fetchDataSuccess,
-  fetchDataFailure,
-} from "./features/musicDataSlice";
+import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
+import { removeSong } from "./features/userPlaylist";
 
-const url =
-  "https://shazam.p.rapidapi.com/charts/track?locale=en-US&pageSize=20&startFrom=0";
-const options = {
-  method: "GET",
-  headers: {
-    "X-RapidAPI-Key": "ef25efabc2msh1f03fb2d437e002p1d43e3jsnf86ca3249813",
-    "X-RapidAPI-Host": "shazam.p.rapidapi.com",
-  },
-};
+const API_BASE_URL = "https://my-json-server.typicode.com/biny001/fakejson";
+const SONGS_API_URL = `${API_BASE_URL}/songs`;
 
-function* fetchData() {
+function* deleteSong(action) {
   try {
-    const response = yield call(fetch, url, options);
-    const data = yield response.json();
-    yield put(fetchDataSuccess(data?.tracks));
-  } catch (error) {
-    yield put(fetchDataFailure(error.message));
+    console.log("Deleting song:", action.payload);
+    const response = yield call(fetch, `${SONGS_API_URL}/${action.payload}`, {
+      method: "DELETE",
+    });
+
+    // Log the response from the DELETE request
+    console.log("Delete response:", response);
+
+    yield put(removeSong(action.payload));
+  } catch (err) {
+    console.error("Error deleting song:", err);
   }
 }
 
-function* musicSaga() {
-  yield takeLatest(fetchDataStart.type, fetchData);
+export function* musicSaga() {
+  yield takeLatest("playlist/removeSong", deleteSong);
 }
-
-export default musicSaga;
