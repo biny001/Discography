@@ -108,7 +108,6 @@ function Sidebar() {
         {Object.entries(iconMappings).map(([key, { outline, fill }]) => (
           <ListIcon
             key={key}
-            exact={key === "playlist"}
             to={`/${key === "playlist" ? "" : key}`}
           >
             {({ isActive }) => (

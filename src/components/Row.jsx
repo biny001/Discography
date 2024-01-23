@@ -72,7 +72,12 @@ function Row({ song }) {
           <button onClick={handleRemoveSong}>Delete</button>
         </Edit>
       </TableRow>
-      {isOpen && <EditModal setIsOpen={setIsOpen} />}
+      {isOpen && (
+        <EditModal
+          setIsOpen={setIsOpen}
+          song={song}
+        />
+      )}
     </>
   );
 }

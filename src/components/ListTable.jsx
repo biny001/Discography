@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "@emotion/styled";
 import Row from "./Row";
 import { getSong } from "../redux/features/userPlaylist";
+import CreateSongForm from "./CreateSongForm";
 
 const Table = styled.div`
   border: 1px solid var(--color-grey-200);
@@ -13,11 +14,17 @@ const Table = styled.div`
   overflow: hidden;
 `;
 
+const createButton = styled.button`
+  position: absolute;
+  right: 0;
+`;
+
 const TableHeader = styled.header`
   display: grid;
   grid-template-columns: 0.6fr 1.8fr 2.2fr 1fr 1fr 1fr;
   column-gap: 2.4rem;
   align-items: center;
+  position: relative;
 
   background-color: var(--color-grey-50);
   border-bottom: 1px solid var(--color-grey-100);
@@ -31,6 +38,7 @@ const TableHeader = styled.header`
 function ListTable() {
   const dispatch = useDispatch();
   const song = useSelector((store) => store.music.songs);
+  const [openForm, setOpenForm] = useState(false);
 
   useEffect(function () {
     if (song.length) return;
@@ -58,7 +66,10 @@ function ListTable() {
         <div>Duration</div>
 
         <div></div>
+        <button onClick={() => setOpenForm(true)}>create</button>
       </TableHeader>
+
+      {openForm && <CreateSongForm setOpenForm={setOpenForm} />}
       {song?.map((song) => (
         <Row
           song={song}

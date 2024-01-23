@@ -8,7 +8,7 @@ const StyledFormRow = styled.div`
   display: grid;
   align-items: center;
   grid-template-columns: 24rem 1fr 1.2fr;
-  font-size: 16px;
+  font-size: 14px;
   gap: 2.4rem;
 
   padding: 1.2rem 0;
@@ -92,44 +92,44 @@ const Wrapper = styled.div`
   gap: 1.2rem;
 `;
 
-function EditModal({ setIsOpen, song }) {
-  const [editedArtist, setEditedArtist] = useState(song.artist);
-  const [editedTitle, setEditedTitle] = useState(song.title);
-  const [editedDuration, setEditedDuration] = useState(song.duration);
+function CreateSongForm({ setOpenForm }) {
+  const [artist, setartist] = useState("");
+  const [title, settitle] = useState("");
+  const [duration, setduration] = useState("");
+  const [coverArt, setCoverArt] = useState("https://");
 
   const dispatch = useDispatch();
 
   const handleEdit = (e) => {
     e.preventDefault();
     const editobj = {
-      ...song,
-      artist: editedArtist,
-      title: editedTitle,
-      duration: editedDuration,
+      artist: artist,
+      title: title,
+      duration: duration,
     };
-    dispatch(updateSong(editobj));
 
-    console.log(editedTitle);
+    console.log(title);
   };
 
   const hanldeModal = (e) => {
     e.preventDefault();
-    setIsOpen(false);
+    setOpenForm(false);
   };
 
   return (
     <Overlay>
       <StyledModal>
-        <h1>Edit Song</h1>
+        <h1>Create Song</h1>
         <form>
           <StyledFormRow>
             <label htmlFor="title">Title</label>
             <input
               type="text"
               id="title"
-              value={editedTitle}
+              placeholder="UpTown-Funk"
+              value={title}
               onChange={(e) => {
-                setEditedTitle(e.target.value);
+                settitle(e.target.value);
               }}
             />
             {/* {errors.title && <Error>{errors.title}</Error>} */}
@@ -139,9 +139,10 @@ function EditModal({ setIsOpen, song }) {
             <input
               type="text"
               id="artist"
-              value={editedArtist}
+              value={artist}
+              placeholder="Bruno Mars"
               onChange={(e) => {
-                setEditedArtist(e.target.value);
+                setartist(e.target.value);
               }}
             />
             {/* {errors.title && <Error>{errors.title}</Error>} */}
@@ -151,9 +152,22 @@ function EditModal({ setIsOpen, song }) {
             <input
               type="text"
               id="duration"
-              value={editedDuration}
+              value={duration}
+              placeholder="3:00"
               onChange={(e) => {
-                setEditedDuration(e.target.value);
+                setduration(e.target.value);
+              }}
+            />
+            {/* {errors.title && <Error>{errors.title}</Error>} */}
+          </StyledFormRow>
+          <StyledFormRow>
+            <label htmlFor="title">CoverArt</label>
+            <input
+              type="text"
+              id="coverArt"
+              value={coverArt}
+              onChange={(e) => {
+                setCoverArt(e.target.value);
               }}
             />
             {/* {errors.title && <Error>{errors.title}</Error>} */}
@@ -163,7 +177,7 @@ function EditModal({ setIsOpen, song }) {
               primary="green"
               onClick={handleEdit}
             >
-              save
+              create
             </Button>
             <Button onClick={hanldeModal}>cancel</Button>
           </Wrapper>
@@ -173,4 +187,4 @@ function EditModal({ setIsOpen, song }) {
   );
 }
 
-export default EditModal;
+export default CreateSongForm;
