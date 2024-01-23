@@ -10,14 +10,17 @@ const Container = styled.div`
   grid-template-columns: 0.5fr 3fr;
   overflow-x: hidden;
   overflow-y: hidden;
+  @media (max-width: 767px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const Main = styled.div`
-  display: grid;
+  /* display: grid;
 
   grid-template-columns: ${({ showInfo }) =>
     showInfo ? "3fr 1fr" : "3.5fr 0fr"};
-  transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out; */
 `;
 
 const OutletContainer = styled.div`
@@ -43,7 +46,6 @@ function AppLayout() {
         <OutletContainer>
           <Outlet />
         </OutletContainer>
-        <Info showInfo={false} />
       </Main>
     </Container>
   );

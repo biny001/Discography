@@ -21,6 +21,9 @@ const userPlaylistSlice = createSlice({
     createSong(state, action) {
       console.log(action.payload);
     },
+    fetchSong(state, action) {
+      console.log(action.payload);
+    },
     getSong(state, action) {
       state.songs = action.payload;
     },
@@ -39,7 +42,7 @@ const userPlaylistSlice = createSlice({
   },
 });
 
-export const { getSong, removeSong, updateSong, createSong } =
+export const { getSong, removeSong, updateSong, createSong, fetchSong } =
   userPlaylistSlice.actions;
 
 export default userPlaylistSlice.reducer;

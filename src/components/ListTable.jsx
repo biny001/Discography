@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "@emotion/styled";
 import Row from "./Row";
-import { getSong } from "../redux/features/userPlaylist";
+import { fetchSong, getSong } from "../redux/features/userPlaylist";
 import CreateSongForm from "./CreateSongForm";
+import { getData } from "../redux/musicSaga";
 
 const Table = styled.div`
   border: 1px solid var(--color-grey-200);
@@ -40,21 +41,10 @@ function ListTable() {
   const song = useSelector((store) => store.music.songs);
   const [openForm, setOpenForm] = useState(false);
 
-  useEffect(function () {
-    if (song.length) return;
-    async function fetchData() {
-      try {
-        const res = await fetch(
-          "https://my-json-server.typicode.com/biny001/fakejson/songs"
-        );
-        const data = await res.json();
-        dispatch(getSong(data));
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    fetchData();
-  }, []);
+  useEffect(() => {
+    dispatch(fetchSong());
+    console.log("fetch successfull");
+  }, [dispatch]);
 
   return (
     <Table role="table">

@@ -1,8 +1,30 @@
 import { call, put, take, takeEvery, takeLatest } from "redux-saga/effects";
-import { removeSong, updateSong } from "./features/userPlaylist";
+import {
+  removeSong,
+  updateSong,
+  createSong,
+  getSong,
+  fetchSong,
+} from "./features/userPlaylist";
 
 const API_BASE_URL = "https://my-json-server.typicode.com/biny001/fakejson";
 const SONGS_API_URL = `${API_BASE_URL}/songs`;
+
+export function* getData(action) {
+  try {
+    const response = yield call(fetch, `${SONGS_API_URL}`);
+
+    if (response.ok) {
+      const data = yield response.json();
+      console.log(data);
+      yield put(getSong(data));
+    } else {
+      console.error("Failed to fetch songs:", response.statusText);
+    }
+  } catch (err) {
+    console.error("An error occurred while fetching songs:", err);
+  }
+}
 
 function* deleteSong(action) {
   try {
@@ -38,7 +60,7 @@ function* editSong(action) {
   }
 }
 
-function* createSong(action) {
+function* postSong(action) {
   try {
     const response = yield call(fetch, `${SONGS_API_URL}`, {
       method: "POST",
@@ -57,5 +79,6 @@ function* createSong(action) {
 export function* musicSaga() {
   yield takeLatest("playlist/removeSong", deleteSong);
   yield takeLatest("playlist/updateSong", editSong);
-  yield takeLatest("playlist/createSong", createSong);
+  yield takeLatest("playlist/createSong", postSong);
+  yield takeLatest("playlist/fetchSong", getData);
 }
