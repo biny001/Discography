@@ -2,8 +2,8 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { updateSong } from "../redux/features/userPlaylist";
-
+import { createSong } from "../redux/features/userPlaylist";
+import { v4 as uuidv4 } from "uuid";
 const StyledFormRow = styled.div`
   display: grid;
   align-items: center;
@@ -93,6 +93,7 @@ const Wrapper = styled.div`
 `;
 
 function CreateSongForm({ setOpenForm }) {
+  const random = uuidv4();
   const [artist, setartist] = useState("");
   const [title, settitle] = useState("");
   const [duration, setduration] = useState("");
@@ -100,15 +101,19 @@ function CreateSongForm({ setOpenForm }) {
 
   const dispatch = useDispatch();
 
-  const handleEdit = (e) => {
+  const handleCreate = (e) => {
     e.preventDefault();
-    const editobj = {
+    const newSong = {
+      id: random,
       artist: artist,
       title: title,
       duration: duration,
+      coverArt: coverArt,
     };
 
-    console.log(title);
+    dispatch(createSong(newSong));
+
+    setOpenForm(false);
   };
 
   const hanldeModal = (e) => {
@@ -175,7 +180,7 @@ function CreateSongForm({ setOpenForm }) {
           <Wrapper>
             <Button
               primary="green"
-              onClick={handleEdit}
+              onClick={handleCreate}
             >
               create
             </Button>

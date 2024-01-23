@@ -108,7 +108,7 @@ function EditModal({ setIsOpen, song }) {
       duration: editedDuration,
     };
     dispatch(updateSong(editobj));
-
+    setIsOpen(false);
     console.log(editedTitle);
   };
 

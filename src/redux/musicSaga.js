@@ -13,8 +13,6 @@ function* deleteSong(action) {
 
     // Log the response from the DELETE request
     console.log("Delete response:", response);
-
-    yield put(removeSong(action.payload));
   } catch (err) {
     console.error("Error deleting song:", err);
   }
@@ -35,7 +33,6 @@ function* editSong(action) {
       }
     );
     console.log(response);
-    yield put(updateSong(action.payload));
   } catch (err) {
     console.log(err);
   }
@@ -43,7 +40,7 @@ function* editSong(action) {
 
 function* createSong(action) {
   try {
-    const response = yield call(fetch, SONGS_API_URL / `${action.payload.id}`, {
+    const response = yield call(fetch, `${SONGS_API_URL}`, {
       method: "POST",
       body: JSON.stringify(action.payload),
       headers: {
@@ -52,7 +49,6 @@ function* createSong(action) {
     });
 
     console.log(response);
-    const data = response.JSON();
   } catch (err) {
     console.log(err);
   }
