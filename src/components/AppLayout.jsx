@@ -28,6 +28,7 @@ const OutletContainer = styled.div`
   flex-direction: column;
   align-items: center;
   overflow-y: auto;
+
   max-height: 100vh;
   position: relative;
 `;

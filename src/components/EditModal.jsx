@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { updateSong } from "../redux/features/userPlaylist";
 
 const StyledFormRow = styled.div`
@@ -10,7 +9,6 @@ const StyledFormRow = styled.div`
   grid-template-columns: 24rem 1fr 1.2fr;
   font-size: 16px;
   gap: 2.4rem;
-
   padding: 1.2rem 0;
 
   &:first-of-type {
@@ -30,6 +28,11 @@ const StyledFormRow = styled.div`
     justify-content: flex-end;
     gap: 1.2rem;
   }
+
+  @media (max-width: 420px) {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
 `;
 
 const StyledModal = styled.div`
@@ -44,6 +47,10 @@ const StyledModal = styled.div`
   transition: all 0.5s;
   color: black;
   text-align: center;
+
+  @media (max-width: 420px) {
+    width: 80%;
+  }
 `;
 
 const Overlay = styled.div`
@@ -67,22 +74,20 @@ const Button = styled.button`
     props.primary === "green" ? "#15803d" : "#4b5563"};
   color: var(--color-grey-100);
   transition: all 0.2s;
-
   top: 1.2rem;
   right: 1.9rem;
 
   &:hover {
     background-color: ${(props) =>
-      props.primary === "green" ? "#03C988" : " #b91c1c"};
+      props.primary === "green" ? "#03C988" : "#b91c1c"};
   }
+
   & svg {
     width: 2.4rem;
     height: 2.4rem;
-    /* Sometimes we need both */
-    /* fill: var(--color-grey-500);
-    stroke: var(--color-grey-500); */
     color: var(--color-grey-500);
   }
+
   transition: background-color 0.3s ease-in-out;
 `;
 
@@ -132,7 +137,6 @@ function EditModal({ setIsOpen, song }) {
                 setEditedTitle(e.target.value);
               }}
             />
-            {/* {errors.title && <Error>{errors.title}</Error>} */}
           </StyledFormRow>
           <StyledFormRow>
             <label htmlFor="title">Artist</label>
@@ -144,7 +148,6 @@ function EditModal({ setIsOpen, song }) {
                 setEditedArtist(e.target.value);
               }}
             />
-            {/* {errors.title && <Error>{errors.title}</Error>} */}
           </StyledFormRow>
           <StyledFormRow>
             <label htmlFor="title">Duration</label>
@@ -156,7 +159,6 @@ function EditModal({ setIsOpen, song }) {
                 setEditedDuration(e.target.value);
               }}
             />
-            {/* {errors.title && <Error>{errors.title}</Error>} */}
           </StyledFormRow>
           <Wrapper>
             <Button

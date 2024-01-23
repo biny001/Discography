@@ -3,6 +3,7 @@ import ListTable from "../components/ListTable";
 
 const PlaylistContainer = styled.div`
   padding: 16px;
+  position: relative;
 
   @media (max-width: 720px) {
     text-align: right;
