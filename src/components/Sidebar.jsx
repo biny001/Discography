@@ -161,7 +161,10 @@ function Sidebar() {
   return (
     <>
       <HamburgerButton onClick={toggleSidebar}>
-        <FaBars />
+        <FaBars
+          color="black"
+          size={"34px"}
+        />
       </HamburgerButton>
       <Container showSidebar={showSidebar}>
         <NavLink to="/">

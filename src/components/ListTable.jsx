@@ -15,9 +15,16 @@ const Table = styled.div`
   overflow: hidden;
 `;
 
-const createButton = styled.button`
-  position: absolute;
-  right: 0;
+const CreateButton = styled.button`
+  display: none;
+
+  @media (max-width: 420px) {
+    display: block;
+    position: absolute;
+    right: 1.6rem;
+    top: 1.6rem;
+    font-size: 1.4rem;
+  }
 `;
 
 const TableHeader = styled.header`
