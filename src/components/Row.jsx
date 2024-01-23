@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
 import { useDispatch } from "react-redux";
 import { removeSong } from "../redux/features/userPlaylist";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import EditModal from "./EditModal";
 
 const TableRow = styled.div`
   display: grid;
@@ -37,9 +38,9 @@ const Duration = styled.div`
   font-weight: 600;
   color: var(--color-blue-700);
 `;
+
 const Edit = styled.div`
   display: flex;
-
   align-items: center;
   justify-content: center;
   gap: 1rem;
@@ -47,23 +48,32 @@ const Edit = styled.div`
 
 function Row({ song }) {
   const { id, artist, title, coverArt, duration } = song;
+  const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
-  function handleRemoveSong() {
+
+  const handleEdit = () => {
+    setIsOpen(true);
+  };
+
+  const handleRemoveSong = () => {
     dispatch(removeSong(id));
-  }
+  };
 
   return (
-    <TableRow role="row">
-      <Img src={coverArt} />
-      <Title>{title}</Title>
-      <div>{artist}</div>
-      <Duration>{duration}</Duration>
+    <>
+      <TableRow role="row">
+        <Img src={coverArt} />
+        <Title>{title}</Title>
+        <div>{artist}</div>
+        <Duration>{duration}</Duration>
 
-      <Edit>
-        <button>Edit</button>
-        <button onClick={handleRemoveSong}>Delete</button>
-      </Edit>
-    </TableRow>
+        <Edit>
+          <button onClick={handleEdit}>Edit</button>
+          <button onClick={handleRemoveSong}>Delete</button>
+        </Edit>
+      </TableRow>
+      {isOpen && <EditModal setIsOpen={setIsOpen} />}
+    </>
   );
 }
 

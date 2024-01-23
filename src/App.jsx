@@ -20,6 +20,10 @@ function App() {
           <Route element={<AppLayout />}>
             <Route
               path="/"
+              element={<Playlist />}
+            />
+            <Route
+              path="/home"
               element={<Home />}
             />
             <Route
@@ -29,10 +33,6 @@ function App() {
             <Route
               path="/favorites"
               element={<Favorites />}
-            />
-            <Route
-              path="/playlist"
-              element={<Playlist />}
             />
             <Route
               path="*"

@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   songs: [],
   isLoading: false,
+  songEdit: null,
 };
 
 const userPlaylistSlice = createSlice({
@@ -14,6 +15,17 @@ const userPlaylistSlice = createSlice({
     },
     removeSong(state, action) {
       state.songs = state.songs.filter((song) => song.id !== action.payload);
+    },
+    updateSong(state, action) {
+      state.songs = state.songs.map((song) => {
+        if (song.id === action.payload.id) {
+          return {
+            ...song,
+            ...action.payload,
+          };
+        }
+        return song;
+      });
     },
   },
 });

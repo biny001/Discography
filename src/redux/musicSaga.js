@@ -20,6 +20,21 @@ function* deleteSong(action) {
   }
 }
 
+function* editSong(action) {
+  try {
+    console.log("Edition song:", action.payload);
+    const response = yield call(fetch, `${SONGS_API_URL}/${action.payload}`, {
+      method: "PUT",
+      body: JSON.stringify(action.payload),
+    });
+    console.log(response);
+    yield put(updateSong(action.payload));
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 export function* musicSaga() {
   yield takeLatest("playlist/removeSong", deleteSong);
+  yield takeLatest("playlist/updateSong", editSong);
 }

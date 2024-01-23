@@ -77,6 +77,10 @@ const UnorderedList = styled.ul`
 `;
 function Sidebar() {
   const iconMappings = {
+    playlist: {
+      outline: <RiPlayListLine size="28px" />,
+      fill: <RiPlayListFill size="28px" />,
+    },
     home: {
       outline: <GoHome size="28px" />,
       fill: <GoHomeFill size="28px" />,
@@ -88,10 +92,6 @@ function Sidebar() {
     favorites: {
       outline: <FaRegHeart size="28px" />,
       fill: <FaHeart size="28px" />,
-    },
-    playlist: {
-      outline: <RiPlayListLine size="28px" />,
-      fill: <RiPlayListFill size="28px" />,
     },
   };
 
@@ -108,8 +108,8 @@ function Sidebar() {
         {Object.entries(iconMappings).map(([key, { outline, fill }]) => (
           <ListIcon
             key={key}
-            exact={key === "home"}
-            to={`/${key === "home" ? "" : key}`}
+            exact={key === "playlist"}
+            to={`/${key === "playlist" ? "" : key}`}
           >
             {({ isActive }) => (
               <>
