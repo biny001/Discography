@@ -2,9 +2,8 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "@emotion/styled";
 import Row from "./Row";
-import { fetchSong, getSong } from "../redux/features/userPlaylist";
+import { fetchSong } from "../redux/features/userPlaylist";
 import CreateSongForm from "./CreateSongForm";
-import { getData } from "../redux/musicSaga";
 
 const Table = styled.div`
   border: 1px solid var(--color-grey-200);
@@ -50,7 +49,6 @@ function ListTable() {
 
   useEffect(() => {
     dispatch(fetchSong());
-    console.log("fetch successfull");
   }, [dispatch]);
 
   return (

@@ -16,7 +16,7 @@ export function* getData(action) {
 
     if (response.ok) {
       const data = yield response.json();
-      console.log(data);
+      // console.log(data);
       yield put(getSong(data));
     } else {
       console.error("Failed to fetch songs:", response.statusText);
@@ -33,8 +33,7 @@ function* deleteSong(action) {
       method: "DELETE",
     });
 
-    // Log the response from the DELETE request
-    console.log("Delete response:", response);
+    // console.log("Delete response:", response);
   } catch (err) {
     console.error("Error deleting song:", err);
   }
@@ -54,7 +53,7 @@ function* editSong(action) {
         },
       }
     );
-    console.log(response);
+    // console.log(response);
   } catch (err) {
     console.log(err);
   }
@@ -70,7 +69,7 @@ function* postSong(action) {
       },
     });
 
-    console.log(response);
+    // console.log(response);
   } catch (err) {
     console.log(err);
   }
