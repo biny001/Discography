@@ -8,7 +8,7 @@ const Container = styled.div`
   height: 100vh;
   display: grid;
   grid-template-columns: 0.5fr 3fr;
-  overflow-x: hidden;
+
   overflow-y: hidden;
   @media (max-width: 767px) {
     grid-template-columns: 1fr;
