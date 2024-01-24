@@ -74,7 +74,10 @@ function* postSong(action) {
       },
     });
 
-    // console.log(response);
+    if (response.ok) {
+      const statusCode = response.status;
+      alert("post  successful  ");
+    }
   } catch (err) {
     console.log(err);
   }
