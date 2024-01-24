@@ -32,8 +32,10 @@ function* deleteSong(action) {
     const response = yield call(fetch, `${SONGS_API_URL}/${action.payload}`, {
       method: "DELETE",
     });
-
-    // console.log("Delete response:", response);
+    if (response.ok) {
+      const statusCode = response.status;
+      alert("delete successful ");
+    }
   } catch (err) {
     console.error("Error deleting song:", err);
   }
@@ -53,7 +55,10 @@ function* editSong(action) {
         },
       }
     );
-    // console.log(response);
+    if (response.ok) {
+      const statusCode = response.status;
+      alert("edit successful with status: ", statusCode);
+    }
   } catch (err) {
     console.log(err);
   }
